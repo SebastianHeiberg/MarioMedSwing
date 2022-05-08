@@ -1,6 +1,7 @@
 package company;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -55,6 +56,7 @@ public class Controller {
   private final JButton buttonPayOrder;
   private final JPanel panelWithTextArea;
   private final JPanel panelWithPayAndRemove;
+  private final Border blackline;
 
 
   public Controller() {
@@ -116,6 +118,7 @@ public class Controller {
     bigTextAreaThatFillsToBorder.add(textAreaLeft);
 
     //furthest right up
+    blackline = BorderFactory.createLineBorder(Color.black);
     textFieldEnterName = new JTextField("",15);
     labelName = new JLabel("Enter name");
     pizzaNumber = new JLabel("Enter pizza number ");
@@ -128,6 +131,15 @@ public class Controller {
     addPizza = new JButton("Add pizza to order");
     finishOrder = new JButton("Complete order");
     cancelOrder = new JButton("Cancel Order");
+
+    textFieldEnterName.setBorder(blackline);
+    labelName.setBorder(blackline);
+    pizzaNumber.setBorder(blackline);
+    textFieldImputNumber.setBorder(blackline);
+    labelPizzaAmount.setBorder(blackline);
+    textFieldPickupTime.setBorder(blackline);
+    textFieldPizzaInputAmount.setBorder(blackline);
+    labelPickupTime.setBorder(blackline);
 
     up.add(labelName);
     up.add(textFieldEnterName);
@@ -240,10 +252,13 @@ public class Controller {
         textFieldInputOrdernumber.setText("");
       }
     });
+
+    //TODO lav en funktion til mængden af pizzaer.
   }
 
-  private void makeNewOrder() {
 
+
+  private void makeNewOrder() {
     String costumerName = textFieldEnterName.getText();
     String pickupTime = textFieldPickupTime.getText();
 
