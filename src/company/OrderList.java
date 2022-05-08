@@ -19,15 +19,16 @@ public class OrderList {
     return listOfOrders;
   }
 
-  public boolean removeOrder(int orderNumber) {
-    for (int i = this.listOfOrders.size() - 1; i >= 0; i--) {
-      Order order = listOfOrders.get(i);
-      if (orderNumber == order.getOrderNumber()) {
-        listOfOrders.remove(order);
-        return true;
-      }
-    }
-    return false;
-  }
+  //TODO removeOrder
+//  public boolean removeOrder(int orderNumber) {
+//    for (int i = this.listOfOrders.size() - 1; i >= 0; i--) {
+//      Order order = listOfOrders.get(i);
+//      if (orderNumber == order.getOrderNumber()) {
+//        listOfOrders.remove(order);
+//        return true;
+//      }
+//    }
+//    return false;
+//  }
 
 }

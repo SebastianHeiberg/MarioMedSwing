@@ -12,7 +12,7 @@ public class Controller {
   private final UserInterface ui = new UserInterface();
   private final OrderList orderList = new OrderList();
   private Menucard menuCard = new Menucard();
-  private final Timer timer = new Timer();
+
   private final FileReader fileReader = new FileReader();
   private final FileWriter fileWriter = new FileWriter();
   private Statistics myStat;
@@ -234,17 +234,16 @@ public class Controller {
       textCurrentOrder.setText("");
     }
   }
-
-  private void removeOrder() {
-    boolean removed = orderList.removeOrder(ui.removeOrder());
-
-    if (removed) {
-      ui.displayOrderRemoved();
-    } else {
-      ui.displayOrderNotFound();
-    }
-
-  }
+//        TODO removeOrder
+//  private void removeOrder() {
+//    boolean removed = orderList.removeOrder(ui.removeOrder());
+//
+//    if (removed) {
+//      ui.displayOrderRemoved();
+//    } else {
+//      ui.displayOrderNotFound();
+//    }
+//  }
 
   private void programAndSaveAllValuesToFiles() throws FileNotFoundException {
     fileWriter.saveStatsToFile(myStat);
@@ -269,25 +268,5 @@ public class Controller {
 
     importAllDataForSystemFromFiles();
     buttonActions();
-
-
-//
-//    boolean loop = true;
-//    while (loop) {
-//
-//      ui.displayMenu();
-//      int choice = ui.userIndputNumber();
-//
-//      switch (choice) {
-//        case 1 -> ui.printMenu(menuCard);
-//        case 2 -> makeNewOrder();
-//        case 3 -> showWaitingOrders();
-//        case 4 -> removeOrder();
-//        case 5 -> ui.displayStats(myStat);
-//        case 6 -> ui.displayRevenue(revenue);
-//        case 10 -> loop = exitprogramAndSaveValuesToFiles();
-//        default -> ui.printInvalidChoice();
-//      }
-
   }
 }

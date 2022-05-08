@@ -24,9 +24,6 @@ public class Order {
       this.addPizzaToOrder(chosenPizza);
       myStat.setMenuArrayItem(pizzaOfChoiceMenuNumber);
     }
-//    else if (pizzaOfChoiceMenuNumber == 0){
-//      this.setOrderNumber();
-//    }
   }
 
   public void addPizzaToOrder(Pizza chosenPizza) {
