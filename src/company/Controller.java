@@ -22,17 +22,16 @@ public class Controller {
 
   // UserInterface
   private final JFrame frame;
-  private final JSplitPane bigDivider;
-  private final JSplitPane smallDivide;
-  private final JSplitPane upAndDownDivide;
-  private final JPanel furtherRight;
-  private final JPanel furtherLeft;
+  private final JSplitPane divideLargeTextFieldFromRest;
+  private final JSplitPane upAndDownDivideMostRight;
+  private final JPanel toTheRightOfTextArea;
+  private final JPanel bigTextAreaThatFillsToBorder;
   private final JButton buttonShowMenu;
   private final JButton buttonShowStats;
   private final JButton buttonShowOrders;
   private final JButton buttonExit;
-  private final JPanel leftSide;
-  private final JPanel rightSide;
+  private final JPanel leftButtonsSideDivider;
+  private final JPanel rightSideOfTheButtonRow;
   private final TextArea textAreaLeft;
   private final JTextField textFieldEnterName;
   private final JLabel labelName;
@@ -49,6 +48,12 @@ public class Controller {
   private final JPanel up;
   private final JPanel down;
   private final TextArea textCurrentOrder;
+  private final JLabel labelOrderNumber;
+  private final JTextField textFieldInputOrdernumber;
+  private final JButton buttonremoveOrder;
+  private final JButton buttonPayOrder;
+  private final JPanel panelWithTextArea;
+  private final JPanel panelWithPayAndRemove;
 
 
   public Controller() {
@@ -57,45 +62,52 @@ public class Controller {
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-    //SplitPane
-    this.bigDivider = new JSplitPane();
-    frame.add(bigDivider);
-    bigDivider.setDividerLocation(200);
-    leftSide = new JPanel(new GridLayout(4, 1));
-    rightSide = new JPanel(new BorderLayout());
-    bigDivider.setLeftComponent(leftSide);
-    bigDivider.setRightComponent(rightSide);
 
-    //further split
-    smallDivide = new JSplitPane();
-    rightSide.add(smallDivide);
-    smallDivide.setDividerLocation(700);
-    furtherLeft = new JPanel(new BorderLayout());
-    furtherRight = new JPanel();
-    smallDivide.setRightComponent(furtherRight);
-    smallDivide.setLeftComponent(furtherLeft);
-    upAndDownDivide = new JSplitPane();
-    upAndDownDivide.setOrientation(JSplitPane.VERTICAL_SPLIT);
-    furtherRight.add(upAndDownDivide);
+    //SplitPane
+    JSplitPane divideButtonsFromRest = new JSplitPane();
+    frame.add(divideButtonsFromRest);
+    divideButtonsFromRest.setDividerLocation(200);
+    leftButtonsSideDivider = new JPanel(new GridLayout(4, 1));
+    rightSideOfTheButtonRow = new JPanel(new BorderLayout());
+    divideButtonsFromRest.setLeftComponent(leftButtonsSideDivider);
+    divideButtonsFromRest.setRightComponent(rightSideOfTheButtonRow);
+
+    //splitting the rigth side of the buttons"menu" and creating the textArea
+    divideLargeTextFieldFromRest = new JSplitPane();
+    rightSideOfTheButtonRow.add(divideLargeTextFieldFromRest);
+    divideLargeTextFieldFromRest.setDividerLocation(700);
+    bigTextAreaThatFillsToBorder = new JPanel(new BorderLayout());
+    divideLargeTextFieldFromRest.setLeftComponent(bigTextAreaThatFillsToBorder);
+
+    //Splitting and setting area right of the textArea
+    toTheRightOfTextArea = new JPanel(new GridLayout(2,2));
+    divideLargeTextFieldFromRest.setRightComponent(toTheRightOfTextArea);
+    upAndDownDivideMostRight = new JSplitPane();
+    upAndDownDivideMostRight.setOrientation(JSplitPane.VERTICAL_SPLIT);
+    upAndDownDivideMostRight.setDividerLocation(200);
+    toTheRightOfTextArea.add(upAndDownDivideMostRight);
     up = new JPanel(new GridLayout(6, 2));
-    up.setSize(200,200);
-    upAndDownDivide.setTopComponent(up);
-    down = new JPanel(new BorderLayout());
-    upAndDownDivide.setBottomComponent(down);
+    upAndDownDivideMostRight.setTopComponent(up);
+    down = new JPanel(new GridLayout(2,1));
+    upAndDownDivideMostRight.setBottomComponent(down);
+    panelWithPayAndRemove = new JPanel();
+    down.add(panelWithPayAndRemove);
+    panelWithTextArea = new JPanel(new GridLayout(2,2));
+    down.add(panelWithTextArea);
 
     //Buttons left side
     buttonShowMenu = new JButton("Show menu");
     buttonShowStats = new JButton("Show Stats on Pizza");
     buttonShowOrders = new JButton("Show orders");
     buttonExit = new JButton("Save and Exit");
-    leftSide.add(buttonShowMenu);
-    leftSide.add(buttonShowOrders);
-    leftSide.add(buttonShowStats);
-    leftSide.add(buttonExit);
+    leftButtonsSideDivider.add(buttonShowMenu);
+    leftButtonsSideDivider.add(buttonShowOrders);
+    leftButtonsSideDivider.add(buttonShowStats);
+    leftButtonsSideDivider.add(buttonExit);
 
     //the middelTextArea
     textAreaLeft = new TextArea();
-    furtherLeft.add(textAreaLeft);
+    bigTextAreaThatFillsToBorder.add(textAreaLeft);
 
     //furthest right up
     textFieldEnterName = new JTextField("",15);
@@ -126,7 +138,17 @@ public class Controller {
 
     //furthest right down
     textCurrentOrder = new TextArea();
-    down.add(textCurrentOrder);
+    textCurrentOrder.setSize(200,200);
+    labelOrderNumber = new JLabel("Enter order number");
+    textFieldInputOrdernumber = new JTextField("",15);
+    buttonPayOrder = new JButton("Pay order");
+    buttonremoveOrder = new JButton("Remove Order from list");
+
+    panelWithTextArea.add(labelOrderNumber);
+    panelWithTextArea.add(textFieldInputOrdernumber);
+    panelWithTextArea.add(buttonremoveOrder);
+    panelWithTextArea.add(buttonPayOrder);
+    panelWithPayAndRemove.add(textCurrentOrder);
 
     frame.validate();
     frame.repaint();
