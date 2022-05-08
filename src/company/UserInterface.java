@@ -2,7 +2,6 @@ package company;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -49,7 +48,7 @@ public class UserInterface {
       textArea.append(String.format("""
           %d. %s %s %d kr
           """, pizza.getMenuNumber(), pizza.getName(), (dot.repeat(120 - (pizza.getName().length()))), pizza.getPrice()));
-      textArea.append(String.format(pizza.getToppings() + "\n\n"));
+      textArea.append(pizza.getToppings() + "\n\n");
     }
   }
 
@@ -63,6 +62,6 @@ public class UserInterface {
   }
 
   public void displayRevenue(int revenue, TextArea textArea) {
-    textArea.append(String.format("\nTotal revenue: " + revenue + " kr."));
+    textArea.append("\nTotal revenue: " + revenue + " kr.");
   }
 }

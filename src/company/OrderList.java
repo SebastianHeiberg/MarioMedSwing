@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class OrderList {
 
-  private ArrayList<Order> listOfOrders;
+  private final ArrayList<Order> listOfOrders;
 
   public OrderList() {
     this.listOfOrders = new ArrayList<>();

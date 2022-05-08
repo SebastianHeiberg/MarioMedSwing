@@ -21,34 +21,34 @@ public class Controller {
   private Order currentPizzaOrder;
 
   // UserInterface
-  private JFrame frame;
-  private JSplitPane bigDivider;
-  private JSplitPane smallDivide;
-  private JSplitPane upAndDownDivide;
-  private JPanel futherRight;
-  private JPanel futherLeft;
-  private JButton buttonShowMenu;
-  private JButton buttonShowStats;
-  private JButton buttonShowOrderes;
-  private JButton buttonExit;
-  private JPanel leftSide;
-  private JPanel rigthSide;
-  private TextArea textAreaLeft;
-  private JTextField textFieldEnterName;
-  private JLabel labelName;
-  private JButton startOrder;
-  private JButton cancelOrder;
-  private JLabel pizzaNumber;
-  private JTextField textFieldimputNumber;
-  private JLabel labelPizzaAmount;
-  private JTextField textFieldPizzaImputAmount;
-  private JLabel labelPickupTime;
-  private JTextField textFieldPickupTime;
-  private JButton addPizza;
-  private JButton finishOrder;
-  private JPanel up;
-  private JPanel down;
-  private TextArea textCurrentOrder;
+  private final JFrame frame;
+  private final JSplitPane bigDivider;
+  private final JSplitPane smallDivide;
+  private final JSplitPane upAndDownDivide;
+  private final JPanel furtherRight;
+  private final JPanel furtherLeft;
+  private final JButton buttonShowMenu;
+  private final JButton buttonShowStats;
+  private final JButton buttonShowOrders;
+  private final JButton buttonExit;
+  private final JPanel leftSide;
+  private final JPanel rightSide;
+  private final TextArea textAreaLeft;
+  private final JTextField textFieldEnterName;
+  private final JLabel labelName;
+  private final JButton startOrder;
+  private final JButton cancelOrder;
+  private final JLabel pizzaNumber;
+  private final JTextField textFieldImputNumber;
+  private final JLabel labelPizzaAmount;
+  private final JTextField textFieldPizzaInputAmount;
+  private final JLabel labelPickupTime;
+  private final JTextField textFieldPickupTime;
+  private final JButton addPizza;
+  private final JButton finishOrder;
+  private final JPanel up;
+  private final JPanel down;
+  private final TextArea textCurrentOrder;
 
 
   public Controller() {
@@ -62,48 +62,48 @@ public class Controller {
     frame.add(bigDivider);
     bigDivider.setDividerLocation(200);
     leftSide = new JPanel(new GridLayout(4, 1));
-    rigthSide = new JPanel(new BorderLayout());
+    rightSide = new JPanel(new BorderLayout());
     bigDivider.setLeftComponent(leftSide);
-    bigDivider.setRightComponent(rigthSide);
+    bigDivider.setRightComponent(rightSide);
 
-    //futher split
+    //further split
     smallDivide = new JSplitPane();
-    rigthSide.add(smallDivide);
+    rightSide.add(smallDivide);
     smallDivide.setDividerLocation(700);
-    futherLeft = new JPanel(new BorderLayout());
-    futherRight = new JPanel();
-    smallDivide.setRightComponent(futherRight);
-    smallDivide.setLeftComponent(futherLeft);
+    furtherLeft = new JPanel(new BorderLayout());
+    furtherRight = new JPanel();
+    smallDivide.setRightComponent(furtherRight);
+    smallDivide.setLeftComponent(furtherLeft);
     upAndDownDivide = new JSplitPane();
     upAndDownDivide.setOrientation(JSplitPane.VERTICAL_SPLIT);
-    futherRight.add(upAndDownDivide);
+    furtherRight.add(upAndDownDivide);
     up = new JPanel(new GridLayout(6, 2));
     up.setSize(200,200);
     upAndDownDivide.setTopComponent(up);
     down = new JPanel(new BorderLayout());
     upAndDownDivide.setBottomComponent(down);
 
-    //Buttons leftside
+    //Buttons left side
     buttonShowMenu = new JButton("Show menu");
     buttonShowStats = new JButton("Show Stats on Pizza");
-    buttonShowOrderes = new JButton("Show orders");
+    buttonShowOrders = new JButton("Show orders");
     buttonExit = new JButton("Save and Exit");
     leftSide.add(buttonShowMenu);
-    leftSide.add(buttonShowOrderes);
+    leftSide.add(buttonShowOrders);
     leftSide.add(buttonShowStats);
     leftSide.add(buttonExit);
 
     //the middelTextArea
     textAreaLeft = new TextArea();
-    futherLeft.add(textAreaLeft);
+    furtherLeft.add(textAreaLeft);
 
     //furthest right up
     textFieldEnterName = new JTextField("",15);
     labelName = new JLabel("Enter name");
     pizzaNumber = new JLabel("Enter pizza number ");
-    textFieldimputNumber = new JTextField("", 15);
+    textFieldImputNumber = new JTextField("", 15);
     labelPizzaAmount = new JLabel("Enter amount ");
-    textFieldPizzaImputAmount = new JTextField("", 15);
+    textFieldPizzaInputAmount = new JTextField("", 15);
     textFieldPickupTime = new JTextField("", 15);
     labelPickupTime = new JLabel("Enter pickup time");
     startOrder = new JButton("Start a new order");
@@ -118,9 +118,9 @@ public class Controller {
     up.add(cancelOrder);
     up.add(startOrder);
     up.add(pizzaNumber);
-    up.add(textFieldimputNumber);
+    up.add(textFieldImputNumber);
     up.add(labelPizzaAmount);
-    up.add(textFieldPizzaImputAmount);
+    up.add(textFieldPizzaInputAmount);
     up.add(addPizza);
     up.add(finishOrder);
 
@@ -164,7 +164,7 @@ public class Controller {
       }
     });
 
-    buttonShowOrderes.addActionListener(new ActionListener() {
+    buttonShowOrders.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         textAreaLeft.setText("");
@@ -219,10 +219,10 @@ public class Controller {
 
 
   private void addPizzaToCurrentOrder(){
-  int pizzaOfChoiceMenuNumber = Integer.parseInt(textFieldimputNumber.getText());
+  int pizzaOfChoiceMenuNumber = Integer.parseInt(textFieldImputNumber.getText());
   currentPizzaOrder.addPizzaToNewOrder(menuCard, myStat, pizzaOfChoiceMenuNumber);
   ui.displayAPizza(textCurrentOrder,menuCard.findPizzaByMenuNumber(pizzaOfChoiceMenuNumber));
-  textFieldimputNumber.setText("");
+  textFieldImputNumber.setText("");
   }
 
   private void finalizeOrder(){

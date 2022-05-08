@@ -5,22 +5,24 @@ import java.io.PrintStream;
 
 public class FileWriter {
 
-  public void savePizzasToMenucardList(Menucard currentMenuCard) throws FileNotFoundException {
-
-    PrintStream file = new PrintStream("menucard.csv");
-
-    for (Pizza aNewPizzaToTheMenucard : currentMenuCard.getMenuCard()) {
-
-      file.print(aNewPizzaToTheMenucard.getName());
-      file.print(";");
-      file.print(aNewPizzaToTheMenucard.getMenuNumber());
-      file.print(";");
-      file.print(aNewPizzaToTheMenucard.getPrice());
-      file.print(";");
-      file.print(aNewPizzaToTheMenucard.getToppings());
-      file.print("\n");
-    }
-  }
+// --Commented out by Inspection START (08-05-2022 19:21):
+//  public void savePizzasToMenucardList(Menucard currentMenuCard) throws FileNotFoundException {
+//
+//    PrintStream file = new PrintStream("menucard.csv");
+//
+//    for (Pizza aNewPizzaToTheMenucard : currentMenuCard.getMenuCard()) {
+//
+//      file.print(aNewPizzaToTheMenucard.getName());
+//      file.print(";");
+//      file.print(aNewPizzaToTheMenucard.getMenuNumber());
+//      file.print(";");
+//      file.print(aNewPizzaToTheMenucard.getPrice());
+//      file.print(";");
+//      file.print(aNewPizzaToTheMenucard.getToppings());
+//      file.print("\n");
+//    }
+//  }
+// --Commented out by Inspection STOP (08-05-2022 19:21)
 
   public void saveStatsToFile(Statistics statistics) throws FileNotFoundException {
 
