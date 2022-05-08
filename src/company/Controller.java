@@ -231,6 +231,15 @@ public class Controller {
         textFieldPickupTime.setText("");
       }
     });
+
+    buttonremoveOrder.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        int orderNumber = Integer.parseInt(textFieldInputOrdernumber.getText());
+        orderList.removeOrder(orderNumber);
+        textFieldInputOrdernumber.setText("");
+      }
+    });
   }
 
   private void makeNewOrder() {
@@ -262,16 +271,6 @@ public class Controller {
       textCurrentOrder.setText("");
     }
   }
-//        TODO removeOrder
-//  private void removeOrder() {
-//    boolean removed = orderList.removeOrder(ui.removeOrder());
-//
-//    if (removed) {
-//      ui.displayOrderRemoved();
-//    } else {
-//      ui.displayOrderNotFound();
-//    }
-//  }
 
   private void programAndSaveAllValuesToFiles() throws FileNotFoundException {
     fileWriter.saveStatsToFile(myStat);
