@@ -1,6 +1,7 @@
 package company;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,20 +81,25 @@ public class Controller {
     divideLargeTextFieldFromRest.setLeftComponent(bigTextAreaThatFillsToBorder);
 
     //Splitting and setting area right of the textArea
-    toTheRightOfTextArea = new JPanel(new GridLayout(2,2));
+    toTheRightOfTextArea = new JPanel(new BorderLayout());
     divideLargeTextFieldFromRest.setRightComponent(toTheRightOfTextArea);
     upAndDownDivideMostRight = new JSplitPane();
     upAndDownDivideMostRight.setOrientation(JSplitPane.VERTICAL_SPLIT);
-    upAndDownDivideMostRight.setDividerLocation(200);
+    upAndDownDivideMostRight.setDividerLocation(250);
     toTheRightOfTextArea.add(upAndDownDivideMostRight);
     up = new JPanel(new GridLayout(6, 2));
+    down = new JPanel(new BorderLayout());
     upAndDownDivideMostRight.setTopComponent(up);
-    down = new JPanel(new GridLayout(2,1));
     upAndDownDivideMostRight.setBottomComponent(down);
-    panelWithPayAndRemove = new JPanel();
-    down.add(panelWithPayAndRemove);
+
+    JSplitPane rightCorner = new JSplitPane();
+    rightCorner.setOrientation(JSplitPane.VERTICAL_SPLIT);
+    rightCorner.setDividerLocation(400);
+    down.add(rightCorner);
     panelWithTextArea = new JPanel(new GridLayout(2,2));
-    down.add(panelWithTextArea);
+    panelWithPayAndRemove = new JPanel(new BorderLayout());
+    rightCorner.setBottomComponent(panelWithTextArea);
+    rightCorner.setTopComponent(panelWithPayAndRemove);
 
     //Buttons left side
     buttonShowMenu = new JButton("Show menu");
@@ -142,7 +148,7 @@ public class Controller {
     labelOrderNumber = new JLabel("Enter order number");
     textFieldInputOrdernumber = new JTextField("",15);
     buttonPayOrder = new JButton("Pay order");
-    buttonremoveOrder = new JButton("Remove Order from list");
+    buttonremoveOrder = new JButton("Remove Order");
 
     panelWithTextArea.add(labelOrderNumber);
     panelWithTextArea.add(textFieldInputOrdernumber);

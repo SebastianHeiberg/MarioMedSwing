@@ -23,10 +23,10 @@ public class UserInterface {
       Order temp = liste.get(i);
       ArrayList<Pizza> pizzaInOrder = temp.getOrderItems();
       textArea.append(String.format("""
-          Ordrenummer:      %d
+          Ordrenummer:     %d
           Pickuptime:          %s
-          Name:                %s
-          Price total:         %d kr
+          Name:                   %s
+          Price total:            %d kr
                     
           """, temp.getOrderNumber(), temp.getPickUpTime(), temp.getCostumerName(), temp.getTotalPrice()));
 
