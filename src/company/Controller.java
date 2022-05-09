@@ -121,12 +121,16 @@ public class Controller {
     blackline = BorderFactory.createLineBorder(Color.black);
     textFieldEnterName = new JTextField("",15);
     labelName = new JLabel("Enter name");
+    labelName.setHorizontalAlignment(JLabel.CENTER);
     pizzaNumber = new JLabel("Enter pizza number ");
+    pizzaNumber.setHorizontalAlignment(JLabel.CENTER);
     textFieldImputNumber = new JTextField("", 15);
     labelPizzaAmount = new JLabel("Enter amount ");
+    labelPizzaAmount.setHorizontalAlignment(JLabel.CENTER);
     textFieldPizzaInputAmount = new JTextField("", 15);
     textFieldPickupTime = new JTextField("", 15);
     labelPickupTime = new JLabel("Enter pickup time");
+    labelPickupTime.setHorizontalAlignment(JLabel.CENTER);
     startOrder = new JButton("Start a new order");
     addPizza = new JButton("Add pizza to order");
     finishOrder = new JButton("Complete order");
@@ -158,7 +162,10 @@ public class Controller {
     textCurrentOrder = new TextArea();
     textCurrentOrder.setSize(200,200);
     labelOrderNumber = new JLabel("Enter order number");
+    labelOrderNumber.setHorizontalAlignment(JLabel.CENTER);
+    labelOrderNumber.setBorder(blackline);
     textFieldInputOrdernumber = new JTextField("",15);
+    textFieldInputOrdernumber.setBorder(blackline);
     buttonPayOrder = new JButton("Pay order");
     buttonremoveOrder = new JButton("Remove Order");
 
@@ -275,6 +282,7 @@ public class Controller {
   currentPizzaOrder.addPizzaToNewOrder(menuCard, myStat, pizzaOfChoiceMenuNumber);
   ui.displayAPizza(textCurrentOrder,menuCard.findPizzaByMenuNumber(pizzaOfChoiceMenuNumber));
   textFieldImputNumber.setText("");
+  textFieldPizzaInputAmount.setText("");
   }
 
   private void finalizeOrder(){
