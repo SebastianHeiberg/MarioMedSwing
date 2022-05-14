@@ -8,6 +8,7 @@ public class Order {
   private int orderNumber;
   private final String costumerName;
   private final ArrayList<Pizza> orderItems;
+  private final ArrayList<Integer> orderItemAmount;
 
   public Order(String pickUpTime, String costumerName, int orderNumber) {
     this.pickUpTime = pickUpTime;
@@ -15,15 +16,21 @@ public class Order {
     this.totalPrice = 0;
     this.orderNumber = orderNumber;
     this.orderItems = new ArrayList<>();
+    this.orderItemAmount = new ArrayList<>();
   }
 
-  public void addPizzaToNewOrder(Menucard menuCard, Statistics myStat, int pizzaOfChoiceMenuNumber) {
+  public void addPizzaToNewOrder(Menucard menuCard, Statistics myStat, int pizzaOfChoiceMenuNumber, int pizzaAmount) {
 
     if (pizzaOfChoiceMenuNumber > 0 && pizzaOfChoiceMenuNumber < menuCard.getMenuCard().size()) {
       Pizza chosenPizza = menuCard.findPizzaByMenuNumber(pizzaOfChoiceMenuNumber);
       this.addPizzaToOrder(chosenPizza);
+      this.orderItemAmount.add(pizzaAmount);
       myStat.setMenuArrayItem(pizzaOfChoiceMenuNumber);
     }
+  }
+
+  public ArrayList<Integer> getOrderItemAmount() {
+    return orderItemAmount;
   }
 
   public void addPizzaToOrder(Pizza chosenPizza) {

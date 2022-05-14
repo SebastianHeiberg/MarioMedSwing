@@ -29,4 +29,14 @@ public class OrderList {
     }
   }
 
+  public Order findOrderbyOrdernumber (int orderNumber) {
+    for (int i = this.listOfOrders.size() - 1; i >= 0; i--) {
+      Order order = listOfOrders.get(i);
+      if (orderNumber == order.getOrderNumber()) {
+        return order;
+      }
+    }
+    return null;
+  }
+
 }

@@ -30,12 +30,16 @@ public class UserInterface {
                     
           """, temp.getOrderNumber(), temp.getPickUpTime(), temp.getCostumerName(), temp.getTotalPrice()));
 
-      for (Pizza pizza : pizzaInOrder) {
+      for (int j = 0; j < pizzaInOrder.size();j++ ) {
+        Pizza pizza = pizzaInOrder.get(j);
+        Integer pizzaAmount = temp.getOrderItemAmount().get(j);
         textArea.append(String.format("""
+            
+            Amount:              %d
             Pizza name:       %s
             Pizza toppings:   %s
                       
-            """, pizza.getName(), pizza.getToppings()));
+            """,pizzaAmount, pizza.getName(), pizza.getToppings()));
       }
     }
   }
@@ -52,13 +56,14 @@ public class UserInterface {
     }
   }
 
-  public void displayAPizza(TextArea textArea, Pizza pizza){
+  public void displayAPizza(TextArea textArea, Pizza pizza, Integer amount){
     textArea.append(String.format("""
             
+            Amount:              %d
             Pizza name:       %s
             Pizza toppings:   %s
                       
-            """, pizza.getName(), pizza.getToppings()));
+            """,amount, pizza.getName(), pizza.getToppings()));
   }
 
   public void displayRevenue(int revenue, TextArea textArea) {

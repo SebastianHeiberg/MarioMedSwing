@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.Collections;
 
-@SuppressWarnings("SameReturnValue")
+
 public class Controller {
   private final UserInterface ui = new UserInterface();
   private final OrderList orderList = new OrderList();
@@ -120,15 +120,19 @@ public class Controller {
     //furthest right up
     blackline = BorderFactory.createLineBorder(Color.black);
     textFieldEnterName = new JTextField("",15);
+    textFieldEnterName.setHorizontalAlignment(JTextField.CENTER);
     labelName = new JLabel("Enter name");
     labelName.setHorizontalAlignment(JLabel.CENTER);
     pizzaNumber = new JLabel("Enter pizza number ");
     pizzaNumber.setHorizontalAlignment(JLabel.CENTER);
     textFieldImputNumber = new JTextField("", 15);
+    textFieldImputNumber.setHorizontalAlignment(JTextField.CENTER);
     labelPizzaAmount = new JLabel("Enter amount ");
     labelPizzaAmount.setHorizontalAlignment(JLabel.CENTER);
     textFieldPizzaInputAmount = new JTextField("", 15);
+    textFieldPizzaInputAmount.setHorizontalAlignment(JTextField.CENTER);
     textFieldPickupTime = new JTextField("", 15);
+    textFieldPickupTime.setHorizontalAlignment(JTextField.CENTER);
     labelPickupTime = new JLabel("Enter pickup time");
     labelPickupTime.setHorizontalAlignment(JLabel.CENTER);
     startOrder = new JButton("Start a new order");
@@ -165,6 +169,7 @@ public class Controller {
     labelOrderNumber.setHorizontalAlignment(JLabel.CENTER);
     labelOrderNumber.setBorder(blackline);
     textFieldInputOrdernumber = new JTextField("",15);
+    textFieldInputOrdernumber.setHorizontalAlignment(JTextField.CENTER);
     textFieldInputOrdernumber.setBorder(blackline);
     buttonPayOrder = new JButton("Pay order");
     buttonremoveOrder = new JButton("Remove Order");
@@ -260,8 +265,21 @@ public class Controller {
       }
     });
 
-    //TODO lav en funktion til mængden af pizzaer.
+  buttonPayOrder.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      int orderNumber = Integer.parseInt(textFieldInputOrdernumber.getText());
+      Order payingOrder = orderList.findOrderbyOrdernumber(orderNumber);
+      if (payingOrder != null) {
+        revenue += payingOrder.getTotalPrice();
+        orderList.removeOrder(orderNumber);
+        textFieldInputOrdernumber.setText("");
+      }
+    }
+  });
   }
+
+
 
 
 
@@ -279,10 +297,11 @@ public class Controller {
 
   private void addPizzaToCurrentOrder(){
   int pizzaOfChoiceMenuNumber = Integer.parseInt(textFieldImputNumber.getText());
-  currentPizzaOrder.addPizzaToNewOrder(menuCard, myStat, pizzaOfChoiceMenuNumber);
-  ui.displayAPizza(textCurrentOrder,menuCard.findPizzaByMenuNumber(pizzaOfChoiceMenuNumber));
+  int pizzaAmount = Integer.parseInt(textFieldPizzaInputAmount.getText());
+  currentPizzaOrder.addPizzaToNewOrder(menuCard, myStat, pizzaOfChoiceMenuNumber, pizzaAmount);
+  ui.displayAPizza(textCurrentOrder,menuCard.findPizzaByMenuNumber(pizzaOfChoiceMenuNumber), pizzaAmount);
   textFieldImputNumber.setText("");
-  textFieldPizzaInputAmount.setText("");
+  textFieldPizzaInputAmount.setText("1");
   }
 
   private void finalizeOrder(){
@@ -290,7 +309,6 @@ public class Controller {
     if (currentPizzaOrder != null && currentPizzaOrder.getOrderItems().size() != 0) {
       orderList.addOrder(currentPizzaOrder);
       orderNumber++;
-      revenue += currentPizzaOrder.getTotalPrice();
       textCurrentOrder.setText("");
     }
   }
